@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 2.8)
+#additional
+project(Lab3)
+set(Lab3_VERSION_MAJOR 1)
+
 # we use Boost library
-set(Boost_USE_STATIC_LIBS   ON)
-set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_LIBS   OFF)
+set(Boost_USE_MULTITHREADED OFF)
 set(Boost_ADDITIONAL_VERSIONS "1.44" "1.44.0")
 find_package(Boost COMPONENTS thread date_time program_options filesystem system REQUIRED)
 find_package(Threads REQUIRED)

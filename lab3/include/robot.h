@@ -1,7 +1,7 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 
-#define VERBOSE 1
+#define VERBOSE 0
 
 #include <vector>
 /*ERROR : no such file in directory*/

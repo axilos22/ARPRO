@@ -44,7 +44,7 @@ void SensorRange::Update(const Robot &_robot, const Environment &_envir) {
             }
         }
     }
-#if VERBOSE > 0
+#if VERBOSE > 1
     printf("dMin=%f\n",dMin);
 #endif
     s_ = dMin;

@@ -21,7 +21,7 @@ void functionA() {
     long timeInMillis = d.total_microseconds();
     cout << "time passed: " <<timeInMillis << endl;
 }
-/**
+/** III.2 a)
  * @brief someMethod
  * Some method is crashing because it uses a table that has not be allocated in memory.
  * So the matrix pointer produces a segmentation fault.
@@ -39,7 +39,7 @@ void someMethod() {
     cout << "matrix initilized !" << endl;
 }
 
-/**
+/** III.2 b)
  * @brief someBetterMethod
  * This method is now using dynamic memory allocation: the program provides the size of the table it need to allocate
  * and then asks to lock this part of memory for its private uses.
@@ -47,6 +47,24 @@ void someMethod() {
  * The use of keyword "new" and of adresses of table (int **) allows the program to allocate in memory the requested
  * size for storing a rows x cols matrix of integers.
  */
+
+/** III.2 c)
+ * The 1st execution is much more faster than the 2nd one.
+ * prints :
+ *execution time (normal)= 85µs
+ *execution time (inverted)= 1791417µs
+ * ------------------------------------
+ *execution time (normal)= 99µs
+ *execution time (inverted)= 1783506µs
+ * To explain this reason we 1st have to exaplain how are matrix stored in memory:
+ * For a two dimentional table
+ * In the memory, the program will store adresses of the sub-table into table boxes. So to fill the whole matrix the program will:
+ * 1- allocate a table
+ * 2- fill out this table with adresses of the sub-tables
+ * In the 1st case once we are in a table, we fill out all the other cases of the table so the jump in memory is not high.
+ * In the 2nd case once we filled one case of a table, we jump to another table to fill the other kth case of this table.
+ * The jumps in memory are really high and are much more numerous
+*/
 void someBetterMethod(bool rowCols) {
 //    cout << "start matrix init";
     int rows = 10000, cols = rows;
@@ -76,7 +94,9 @@ void someBetterMethod(bool rowCols) {
     delete [] matrix;
 //    cout << "matrix initialized !" << endl;
 }
-/* The computational failure is due to the high number of iteration done. Except for the case of x=1,
+
+/** III.2 d)
+ * The computational failure is due to the high number of iteration done. Except for the case of x=1,
  * the computer keep computing negative values and as the function is recusive, it enters a loop
  * which has no ending condition (infinite recusive loop/infinite recusion). The program crashes when there is no more avaliable
  * room in memory (more precisely in the stack) for storing all the variables for those recursive calls.
@@ -114,20 +134,3 @@ int main()
     cout << "Fib(" << x << ")= "<< fibX << endl;
     return 0;
 }
-
-/*The 1st execution is much more faster than the 2nd one.
- * prints :
- *execution time (normal)= 85µs
- *execution time (inverted)= 1791417µs
- * ------------------------------------
- *execution time (normal)= 99µs
- *execution time (inverted)= 1783506µs
- * To explain this reason we 1st have to exaplain how are matrix stored in memory:
- * For a two dimentional table
- * In the memory, the program will store adresses of the sub-table into table boxes. So to fill the whole matrix the program will:
- * 1- allocate a table
- * 2- fill out this table with adresses of the sub-tables
- * In the 1st case once we are in a table, we fill out all the other cases of the table so the jump in memory is not high.
- * In the 2nd case once we filled one case of a table, we jump to another table to fill the other kth case of this table.
- * The jumps in memory are really high and are much more numerous
-*/

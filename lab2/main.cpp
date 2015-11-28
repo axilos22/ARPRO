@@ -76,19 +76,42 @@ void someBetterMethod(bool rowCols) {
     delete [] matrix;
 //    cout << "matrix initialized !" << endl;
 }
+/* The computational failure is due to the high number of iteration done. Except for the case of x=1,
+ * the computer keep computing negative values and as the function is recusive, it enters a loop
+ * which has no ending condition (infinite recusive loop/infinite recusion). The program crashes when there is no more avaliable
+ * room in memory (more precisely in the stack) for storing all the variables for those recursive calls.
+ * in order to fix this, we change the stopping condition  x==1 to x<=1
+*/
+int execution = 0;
+int Fib(int x) {
+    execution++;
+    cout << "execution  #" << execution << endl;
+//    if(x==1) {
+    if(x<=1) {
+        cout << "x=1" << endl;
+        return 1;
+    }
+    else {
+        cout << "x=" << x << endl;
+        return Fib(x-1)+Fib(x-2);
+    }
+}
 
 int main()
 {
 //    someMethod();
-    mTime t = mClock::local_time();
-    mDuration d = mClock::local_time()-t;
-    someBetterMethod(true);
-    cout << "execution time (normal)= " << d.total_microseconds() << "µs" << endl;
-    t = mClock::local_time();
-    someBetterMethod(false);
-    d = mClock::local_time()-t;
-    cout << "execution time (inverted)= " << d.total_microseconds() << "µs" << endl;
+//    mTime t = mClock::local_time();
+//    mDuration d = mClock::local_time()-t;
+//    someBetterMethod(true);
+//    cout << "execution time (normal)= " << d.total_microseconds() << "µs" << endl;
+//    t = mClock::local_time();
+//    someBetterMethod(false);
+//    d = mClock::local_time()-t;
+//    cout << "execution time (inverted)= " << d.total_microseconds() << "µs" << endl;
 
+    int x = 5;
+    int fibX = Fib(x);
+    cout << "Fib(" << x << ")= "<< fibX << endl;
     return 0;
 }
 

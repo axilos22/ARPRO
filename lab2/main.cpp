@@ -51,11 +51,11 @@ void someMethod() {
 /** III.2 c)
  * The 1st execution is much more faster than the 2nd one.
  * prints :
- *execution time (normal)= 85µs
- *execution time (inverted)= 1791417µs
+ *execution time (normal)= 451ms
+ *execution time (inverted)= 1764ms
  * ------------------------------------
- *execution time (normal)= 99µs
- *execution time (inverted)= 1783506µs
+ *execution time (normal)= 452ms
+ *execution time (inverted)= 1796ms
  * To explain this reason we 1st have to exaplain how are matrix stored in memory:
  * For a two dimentional table
  * In the memory, the program will store adresses of the sub-table into table boxes. So to fill the whole matrix the program will:
@@ -120,17 +120,17 @@ int Fib(int x) {
 int main()
 {
 //    someMethod();
-//    mTime t = mClock::local_time();
-//    mDuration d = mClock::local_time()-t;
-//    someBetterMethod(true);
-//    cout << "execution time (normal)= " << d.total_microseconds() << "µs" << endl;
-//    t = mClock::local_time();
-//    someBetterMethod(false);
-//    d = mClock::local_time()-t;
-//    cout << "execution time (inverted)= " << d.total_microseconds() << "µs" << endl;
+    mTime t = mClock::local_time();
+    someBetterMethod(true);
+    mDuration d = mClock::local_time()-t;
+    cout << "execution time (normal)= " << d.total_milliseconds() << "ms" << endl;
+    t = mClock::local_time();
+    someBetterMethod(false);
+    d = mClock::local_time()-t;
+    cout << "execution time (inverted)= " << d.total_milliseconds() << "ms" << endl;
 
-    int x = 5;
-    int fibX = Fib(x);
-    cout << "Fib(" << x << ")= "<< fibX << endl;
-    return 0;
+//    int x = 5;
+//    int fibX = Fib(x);
+//    cout << "Fib(" << x << ")= "<< fibX << endl;
+//    return 0;
 }

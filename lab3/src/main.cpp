@@ -9,6 +9,8 @@
 
 #include <sensor_range.h>
 
+#include "lab4.cpp"
+
 using namespace std;
 using namespace arpro;
 
@@ -17,8 +19,15 @@ double roundMinToRadSec(double rpm) {
 }
 
 int main()
-{    
+{
+    /**
+     * Execute the lab IV part
+     */
+    //partIVmain();
     // init robot at (0,0,0)
+    /**
+     * Execute the robot part.
+     */
     Robot robot(0,0,0);
     //init sensor
     SensorRange sensorForRange(.1,0,0,"s1");
@@ -34,9 +43,9 @@ int main()
     - or (v, omega) (local frame)
     - or (omega_left, omega_right) (wheel velocities)
     */
-    double vx, vy, v, omega_left, omega_right, omega;    
+    double vx, vy, v, omega_left, omega_right, omega;
     for(unsigned int i=0;i<10000;++i)
-    {        
+    {
         sensorForRange.Update(robot,envir);
         // use cartesian setpoint
         /*DefautCartesianSetPoint sets the variables vx,vy,omega to a default value by reference

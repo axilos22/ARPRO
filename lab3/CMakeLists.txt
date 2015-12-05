@@ -24,7 +24,7 @@ include_directories(${Boost_INCLUDE_DIRS}
 )
 
 # Robot library
-add_library(robot SHARED src/robot.cpp src/sensor_range.cpp include/robot.h include/envir.h include/sensor.h include/sensor_range.h)
+add_library(robot SHARED src/lab4.cpp src/robot.cpp src/sensor_range.cpp include/robot.h include/envir.h include/sensor.h include/sensor_range.h)
 
 # Lab 3: using the robot class
 # Lab 4: sensors on robot

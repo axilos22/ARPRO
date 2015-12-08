@@ -4,14 +4,13 @@
 #include "isensor.h"
 
 class CContinuousSensor : public ISensor {
-    bool m_isActive;
     float m_value,
-    m_treshold;
+    m_threshold;
 public:
-    CContinuousSensor(float i_treshold=.5);
+    CContinuousSensor(float i_treshold);
     void setValue(float i_value);
     void setTreshold(float i_treshold);
-    bool isActive();
+    bool isActive();    
     std::string show() const;
     ~CContinuousSensor();
     bool operator || (CContinuousSensor& _c);

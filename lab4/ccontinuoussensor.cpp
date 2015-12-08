@@ -8,6 +8,9 @@ CContinuousSensor::CContinuousSensor(float i_treshold)
 void CContinuousSensor::setValue(float i_value)
 {
     if(i_value>0&&i_value<1) {
+//        if(i_value>m_threshold) {
+//            std::cout << "@CContinuousSensor Warning: value exceeds threshold.";
+//        }
         m_value = i_value;
     } else {
         std::cout << "Out of range value provided v=" << i_value << std::endl;
@@ -16,42 +19,43 @@ void CContinuousSensor::setValue(float i_value)
 
 void CContinuousSensor::setTreshold(float i_treshold)
 {
-    m_treshold = i_treshold;
+    m_threshold = i_treshold;
 }
-
+/**
+ * @brief CContinuousSensor::isActive as the contructor will give a value to the threshold, we know if the sensor has been
+ * activated or not.
+ * @return boolean telling of sensor is active or not.
+ */
 bool CContinuousSensor::isActive()
 {
-    return m_isActive;
+    return (m_threshold>0);
 }
 
 std::string CContinuousSensor::show() const
 {
     std::stringstream ssVal,ssTresh;
     ssVal << m_value;
-    ssTresh << m_treshold;
+    ssTresh << m_threshold;
     std::string strVal = ssVal.str(), strTreshold = ssTresh.str();
     return "val= "+strVal+"; Tresh= "+strTreshold;
 }
 
-CContinuousSensor::~CContinuousSensor(){
-//    delete &m_value,&m_treshold,&m_isActive;
-}
+CContinuousSensor::~CContinuousSensor(){}
 
 bool CContinuousSensor::operator ||(CContinuousSensor &_c)
 {
-    return ((m_value<m_treshold)||(_c.m_value<_c.m_treshold));
+    return ((m_value<m_threshold)||(_c.m_value<_c.m_threshold));
 }
 
 bool CContinuousSensor::operator &&(CContinuousSensor &_c)
 {
-    return ((m_value<m_treshold)&&(_c.m_value<_c.m_treshold));
+    return ((m_value<m_threshold)&&(_c.m_value<_c.m_threshold));
 }
 
 CContinuousSensor CContinuousSensor::operator =(const CContinuousSensor &_c)
 {
     m_value = _c.m_value;
-    m_treshold = _c.m_treshold;
-    m_isActive = _c.m_isActive;
+    m_threshold = _c.m_threshold;
     return *this;
 }
 /**

@@ -8,10 +8,6 @@ using namespace std;
 int main()
 {
     srand(time(NULL));
-    // random boolean
-    //    bool var = bool ( rand()%2 ) ;
-    // random float 0 <= f <=1
-    //    float value=(float) rand()/(float)RAND_MAX;
     double thres = .5;
 
     CBinarySensor b1, b2;
@@ -35,11 +31,11 @@ int main()
     cout << "c1 && c2 " << std::boolalpha << (c1&&c2) << endl;
     cout << "c1 || c2 " << std::boolalpha << (c1||c2) << endl;
 
-    cout <<"### Camera sensort ### "<<endl;
+    cout <<"### Camera sensor ### "<<endl;
 
     CCameraSensor cs;
     cs.fillRandomly();
-    cout << cs.show() << endl;
+    cout << cs << endl;
     cout << "Is an object present ? " << std::boolalpha << cs.isObjectPresent()<< endl;
     return 0;
 }
